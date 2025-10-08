@@ -2,6 +2,7 @@ const mongoose = require("mongoose")
 
 const libarySchema = new mongoose.Schema({
     product_id: { type: "String" },
+    key: { type: String, default: "CONTACT WITH ADMIN's"},
     date: { type: Date, default: Date.now() }
 })
 

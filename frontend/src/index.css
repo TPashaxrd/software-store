@@ -1,68 +1,196 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+/* @import '@fontsource/roboto/300.css';
+@import '@fontsource/roboto/400.css';
+@import '@fontsource/roboto/500.css';
+@import '@fontsource/roboto/700.css'; */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Boldonse&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
+/* 
+! font-family: Space Grotesk, serif;
+! font-family: Roboto Condensed, serif;
+! font-family: Atkinson Hyperlegible Next serif;
+! font-family: 'Montserrat', serif;
+! font-family: 'Inter', sans-serif;
+! font-family: "Bungee Tint", sans-serif;
+! font-family: "Source Code Pro", monospace;
+! font-family: "Inter", sans-serif;
+! font-family: "Boldonse", system-ui;
+! font-family: "Winky Sans", sans-serif;
+! font-family: "Roboto", sans-serif;
+*/ 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  background-color: #0F0F0F;
+    /* background-image: url('https://wallpapers.com/images/hd/non-copyrighted-retro-wave-style-s3rhyqiwlu0dlxlz.jpg'); */
+    /* background-repeat: no-repeat; */
+    /* background-size: cover; */
+    /* background-position: center; */
+    color: #333;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    /* margin: 0; */
+    /* padding: 0; */
+    /* min-height: 100vh; */
+}
+/* body { */
+  /* font-family: 'Space Grotesk', serif; */
+/* } */
+/* Selection */
+::selection {
+  background-color: black;
+  color: white;
+}
+::-webkit-scrollbar {
+    display: none;
+    background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #0E131F;
+    border-radius: 10px;
+}
+.font-roboto {
+    font-family: 'Roboto', sans-serif;
+}
+.font-winky-sans {
+    font-family: 'Winky Sans', sans-serif;
+}
+.font-boldonse {
+    font-family: 'Boldonse', system-ui;
+}
+.font-inter {
+    font-family: 'Inter', sans-serif;
+}
+.font-source-code {
+    font-family: 'Source Code Pro', monospace;
+}
+.font-bungee-tint {
+    font-family: 'Bungee Tint', sans-serif;
+}
+.font-space-grotesk {
+    font-family: 'Space Grotesk', serif;
+}
+.font-roboto-condensed {
+    font-family: 'Roboto Condensed', serif;
+}
+.font-montserrat {
+    font-family: 'Montserrat', serif;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+@keyframes pulse-slow {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  .animate-pulse-slow {
+    animation: pulse-slow 8s infinite;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+
+
+  
+  .lds-facebook,
+  .lds-facebook div {
+    box-sizing: border-box;
+  }
+  
+  .lds-facebook {
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px;
+  }
+  
+  .lds-facebook div {
+    display: inline-block;
+    position: absolute;
+    left: 6px;
+    width: 12px;
+    background: #6B46C1;
+    animation: lds-facebook 1s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-radius: 2px;
+    box-shadow: 0 0 8px rgba(107, 70, 193, 0.5); 
+  }
+  
+  .lds-facebook div:nth-child(1) {
+    left: 6px;
+    animation-delay: -0.2s;
+  }
+  
+  .lds-facebook div:nth-child(2) {
+    left: 26px;
+    animation-delay: -0.1s;
+  }
+  
+  .lds-facebook div:nth-child(3) {
+    left: 46px; 
+    animation-delay: 0s;
+  }
+  
+  @keyframes lds-facebook {
+    0% {
+      top: 6px;
+      height: 52px;
+      opacity: 1;
+    }
+    50% {
+      top: 18px;
+      height: 28px;
+      opacity: 0.7;
+    }
+    100% {
+      top: 18px;
+      height: 28px;
+      opacity: 0.7;
+    }
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+@keyframes pulse-slow {
+  0% { transform: scale(1); opacity: 0.2; }
+  50% { transform: scale(1.1); opacity: 0.3; }
+  100% { transform: scale(1); opacity: 0.2; }
 }
-button:hover {
-  border-color: #646cff;
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out;
+}
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+
+
+
+@keyframes pulse-slow {
+  0% { transform: scale(1); opacity: 0.2; }
+  50% { transform: scale(1.1); opacity: 0.3; }
+  100% { transform: scale(1); opacity: 0.2; }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out;
 }
