@@ -1,12 +1,10 @@
 const Ticket = require("../models/Ticket");
 
-// Admin kontrol fonksiyonu
 function checkAdminAuth(req) {
   const adminPass = req.headers["x-admin-password"];
-  return adminPass === "2443"; // kendi admin şifren
+  return adminPass === "2443"; 
 }
 
-// Ticket oluştur
 exports.createTicket = async (req, res) => {
   try {
     const { userId, cheatId, firstMessage } = req.body;
@@ -33,6 +31,25 @@ exports.getTickets = async (req, res) => {
     res.status(200).json(tickets);
   } catch (error) {
     console.error(error);
+    res.status(500).json({ message: "Ticketlar alınamadı." });
+  }
+};
+
+exports.getTicketsByUser = async (req, res) => {
+  try {
+    const userId = req.session.userId;
+    if (!userId) return res.status(401).json({ message: "Giriş yapmanız gerekiyor." });
+
+    const tickets = await Ticket.find({ userId })
+      .populate("userId cheatId")
+      .sort({ createdAt: -1 });
+
+    if (!tickets || tickets.length === 0)
+      return res.status(404).json({ message: "Henüz ticketınız yok." });
+
+    res.status(200).json(tickets);
+  } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "Ticketlar alınamadı." });
   }
 };

@@ -119,27 +119,37 @@ export default function Main() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-900 to-gray-950 text-gray-100 font-sans">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-900 to-gray-950 text-gray-100 font-sans overflow-x-hidden">
       <Navbar user={userData} onLogout={handleLogout} />
 
-      <div className="flex flex-1 flex-col md:flex-row">
-        <div className="w-full md:w-1/2 flex flex-col justify-center px-6 md:px-16 py-12">
+      <div className="flex flex-1 flex-col md:flex-row items-center justify-center relative">
+        <motion.div
+          className="absolute w-[600px] h-[600px] bg-purple-600/30 rounded-full top-[-100px] left-[-150px] blur-3xl animate-blob"
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ duration: 6, repeat: Infinity, repeatType: "mirror" }}
+        />
+        <motion.div
+          className="absolute w-[500px] h-[500px] bg-pink-500/30 rounded-full bottom-[-120px] right-[-100px] blur-3xl animate-blob"
+          animate={{ scale: [1, 1.15, 1] }}
+          transition={{ duration: 8, repeat: Infinity, repeatType: "mirror" }}
+        />
+        <div className="w-full md:w-1/2 z-10 flex flex-col justify-center px-6 md:px-16 py-12">
           {loggedIn && userData ? (
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="flex flex-col items-center gap-6 max-w-md mx-auto bg-gray-900/80 p-10 rounded-2xl shadow-lg border border-purple-600">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="flex flex-col items-center gap-6 max-w-md mx-auto bg-gray-900/70 backdrop-blur-lg p-10 rounded-3xl shadow-xl border border-purple-600">
               <FaUserCircle className="text-6xl text-purple-500" />
               <h2 className="text-2xl md:text-3xl font-semibold text-center">Welcome, {userData.username}!</h2>
               <p className="text-gray-400 text-center text-sm md:text-base">Explore your packages or manage your library.</p>
               <div className="flex flex-col sm:flex-row gap-4 mt-6 w-full">
-                <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => window.location.href = "/packages"} className="bg-purple-500 px-6 py-3 rounded-md hover:bg-purple-600 transition-colors font-medium w-full">
+                <motion.button whileHover={{ scale: 1.05, boxShadow: "0 0 20px #8b5cf6" }} whileTap={{ scale: 0.95 }} onClick={() => window.location.href = "/packages"} className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-2xl w-full font-medium transition-all">
                   Packages
                 </motion.button>
-                <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => window.location.href = "/library/mine"} className="bg-gray-800 px-6 py-3 rounded-md hover:bg-gray-700 transition-colors font-medium w-full">
+                <motion.button whileHover={{ scale: 1.05, boxShadow: "0 0 20px #9d174d" }} whileTap={{ scale: 0.95 }} onClick={() => window.location.href = "/library/mine"} className="bg-gray-800 px-6 py-3 rounded-2xl w-full hover:bg-gray-700 transition-all font-medium">
                   Library
                 </motion.button>
               </div>
             </motion.div>
           ) : (
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="font-inter max-w-md mx-auto w-full bg-gray-900/70 p-10 rounded-2xl shadow-lg border border-purple-600">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="font-inter max-w-md mx-auto w-full bg-gray-900/70 backdrop-blur-lg p-10 rounded-3xl shadow-xl border border-purple-600">
               <h1 className="text-3xl md:text-4xl font-semibold text-center mb-8">{isRegister ? "Register" : "Sign In"}</h1>
 
               {error && (
@@ -158,7 +168,7 @@ export default function Main() {
                       placeholder="Username"
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
-                      className="w-full pl-10 pr-4 py-3 bg-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-100 placeholder-gray-400 transition-all"
+                      className="w-full pl-10 pr-4 py-3 bg-gray-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-100 placeholder-gray-400 transition-all"
                     />
                   </div>
                 )}
@@ -170,7 +180,7 @@ export default function Main() {
                     placeholder="Email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 bg-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-100 placeholder-gray-400 transition-all"
+                    className="w-full pl-10 pr-4 py-3 bg-gray-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-100 placeholder-gray-400 transition-all"
                   />
                 </div>
 
@@ -181,16 +191,15 @@ export default function Main() {
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 bg-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-100 placeholder-gray-400 transition-all"
+                    className="w-full pl-10 pr-4 py-3 bg-gray-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-100 placeholder-gray-400 transition-all"
                   />
                 </div>
-
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
                   whileHover={{ scale: isSubmitting ? 1 : 1.05 }}
                   whileTap={{ scale: isSubmitting ? 1 : 0.95 }}
-                  className={`w-full bg-gradient-to-r from-purple-600 to-pink-500 text-white py-3 rounded-md flex items-center justify-center gap-2 font-medium transition-all ${isSubmitting ? "opacity-50 cursor-not-allowed" : "hover:from-pink-500 hover:to-purple-600"}`}
+                  className={`w-full bg-gradient-to-r from-purple-600 to-pink-500 text-white py-3 rounded-xl flex items-center justify-center gap-2 font-medium transition-all ${isSubmitting ? "opacity-50 cursor-not-allowed" : "hover:from-pink-500 hover:to-purple-600"}`}
                 >
                   {isRegister ? <FaUserPlus /> : <FaSignInAlt />}
                   {isSubmitting ? (isRegister ? "Registering..." : "Signing In...") : isRegister ? "Register" : "Sign In"}
@@ -211,17 +220,28 @@ export default function Main() {
         </div>
 
         <motion.div
-          className="hidden md:block w-1/2 bg-cover bg-center relative"
+          className="hidden md:block w-1/2 relative rounded-l-3xl overflow-hidden"
           style={{ backgroundImage: "url('https://blog.fivemods.io/storage/2025/01/981-1-1300x650.png')" }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/30 rounded-l-3xl" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/30" />
         </motion.div>
       </div>
 
       <ToastContainer position="top-right" autoClose={3000} hideProgressBar theme="dark" />
+
+      <style>{`
+        @keyframes blob {
+          0%, 100% { transform: scale(1) translate(0,0); }
+          33% { transform: scale(1.1) translate(20px,-10px); }
+          66% { transform: scale(0.9) translate(-15px,10px); }
+        }
+        .animate-blob {
+          animation: blob 8s infinite;
+        }
+      `}</style>
     </div>
   );
 }

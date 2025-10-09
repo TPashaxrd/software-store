@@ -7,13 +7,16 @@ import Library from './Pages/Library.tsx'
 import Packages from './Pages/Packages.tsx'
 import Product from './Pages/Product.tsx'
 import Ticket from './Pages/Ticket.tsx'
+import MyTickets from './Pages/Tickets.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
    <Routes>
     <Route path='/' element={<App/>}/>
     <Route path="/packages" element={<Packages/>}/>
+    <Route path='/tickets/mine' element={<MyTickets/>}/>
     <Route path='/product/:id' element={<Product/>}/>
+    <Route path='/ticket' element={<MyTickets/>}/>
     <Route path="/ticket/:id" element={<Ticket/>}/>
     <Route path='/library/mine' element={<Library/>}/>
     <Route path='*' element={<NoPage/>}/>
