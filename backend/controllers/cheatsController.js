@@ -1,4 +1,4 @@
-const Cheats = require("../models/Cheats.js")
+const Cheats = require("../models/Cheat.js")
 const StoreUsers = require("../models/Users.js")
 
 const getAllCheats = async (req, res) => {

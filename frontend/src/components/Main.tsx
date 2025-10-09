@@ -28,14 +28,11 @@ export default function Main() {
 
   useEffect(() => {
     async function fetchIP() {
-      setLoading(true)
       try {
         const res = await axios.get("https://api.ipify.org/?format=json")
         setIP_Address(res.data.ip)
       } catch (error) {
         console.log(error)
-      } finally {
-        setLoading(false)
       }
     }
     fetchIP()
@@ -201,12 +198,12 @@ export default function Main() {
               </form>
 
               <div className="text-center mt-6 flex justify-center items-center gap-2">
-                <span className="text-gray-400">{isRegister ? "Already have an account?" : "Don't have an account?"}</span>
+                <span className="text-gray-400">{isRegister ? "Zaten bir hesabınız var mı?" : "Hesabınız yok mu?"}</span>
                 <button
                   onClick={() => { setIsRegister(!isRegister); setError(""); }}
                   className="text-pink-500 hover:text-pink-600 font-medium transition-colors"
                 >
-                  {isRegister ? "Sign In" : "Register"}
+                  {isRegister ? "Giriş Yap" : "Kayıt ol"}
                 </button>
               </div>
             </motion.div>

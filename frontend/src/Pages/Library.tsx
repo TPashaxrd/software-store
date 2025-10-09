@@ -158,9 +158,9 @@ const Sidebar = ({ user, view, setView, handleLogout }: any) => (
         onClick={handleLogout}
         className="flex items-center gap-2 px-3 py-2 rounded-md bg-red-600 hover:bg-red-700 text-sm justify-center"
       >
-        <FaSignOutAlt /> Logout
+        <FaSignOutAlt /> Çıkış Yap
       </button>
-      <div className="text-xs text-gray-500 text-center">© 2025 ShertyCheats</div>
+      <div className="text-xs text-gray-500 text-center">© 2025 ShartyCheat</div>
     </div>
   </motion.aside>
 );

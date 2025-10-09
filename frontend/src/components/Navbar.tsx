@@ -18,7 +18,7 @@ export default function Navbar({ user, onLogout }: Props) {
         href="/"
         className="text-2xl md:text-3xl font-bold text-red-500 hover:text-red-400 transition-colors"
       >
-        ShertyCheats
+        ShartyCheat
       </a>
 
       <div className="flex items-center gap-3 md:gap-5">

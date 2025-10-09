@@ -8,6 +8,7 @@ import { data } from "../config/data";
 import { FaArrowLeft } from "react-icons/fa";
 
 interface CheatProps {
+  _id?: string;
   title: string;
   description: string;
   price: number;
@@ -65,6 +66,31 @@ export default function Product() {
     }
   };
 
+  const handleBuy = async () => {
+    if (!userData || !item?._id) {
+      toast.warning("Lütfen giriş yapın.");
+      return;
+    }
+
+    try {
+      const res = await axios.post(`${data.api}/api/tickets`, {
+        userId: userData._id,
+        cheatId: item._id,
+        firstMessage: `Satın alma isteği gönderildi: ${item.title}`,
+      });
+      setTimeout(() => navigate(`/ticket/${res.data._id}`), 1500);
+      toast.success("Ticket başarıyla açıldı!");
+      console.log("Yeni ticket:", res.data);
+
+      // istersen direk yönlendirebiliriz:
+      // navigate(`/ticket/${res.data._id}`);
+
+    } catch (err: any) {
+      console.error(err);
+      toast.error("Ticket oluşturulamadı.");
+    }
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-gray-900 to-gray-950">
@@ -100,7 +126,6 @@ export default function Product() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
         >
-          {/* Ana Görsel */}
           <div className="relative w-full overflow-hidden rounded-2xl border border-purple-500/30 shadow-2xl group">
             <motion.img
               key={mainImage}
@@ -110,7 +135,6 @@ export default function Product() {
             />
           </div>
 
-          {/* Küçük Önizleme Görseller */}
           {item.Images && item.Images.length > 0 && (
             <motion.div
               className="w-full flex gap-4 justify-center flex-wrap mt-3"
@@ -174,7 +198,7 @@ export default function Product() {
             disabled={!userData}
             whileHover={userData ? { scale: 1.03 } : {}}
             whileTap={userData ? { scale: 0.97 } : {}}
-            onClick={() => alert("Purchase functionality coming soon!")}
+            onClick={handleBuy}
             className={`mt-8 py-4 rounded-xl text-xl font-semibold w-full transition-all ${
               userData
                 ? "bg-gradient-to-r from-purple-600 to-pink-500 hover:from-pink-500 hover:to-purple-600 shadow-lg text-white"

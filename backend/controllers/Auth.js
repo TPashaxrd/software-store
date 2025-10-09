@@ -1,4 +1,4 @@
-const Cheats = require("../models/Cheats");
+const Cheats = require("../models/Cheat");
 const Users = require("../models/Users");
 const bcrypt = require("bcryptjs")
 
