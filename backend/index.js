@@ -8,6 +8,7 @@ const session = require("express-session")
 const AuthRoutes = require("./routes/auth")
 const CheatRoutes = require("./routes/Cheats")
 const TicketRoutes = require("./routes/Tickets")
+const { limiter } = require("./middlewares/rateLimiter")
 const app = express()
 
 dotenv.config()
@@ -37,7 +38,7 @@ app.use(session({
 }))
 
 db()
-
+app.use(limiter)
 app.use("/api/auth", AuthRoutes)
 app.use("/api/cheats", CheatRoutes);
 app.use("/api/tickets", TicketRoutes)

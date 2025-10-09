@@ -41,8 +41,14 @@ exports.getTicketsByUser = async (req, res) => {
     if (!userId) return res.status(401).json({ message: "Giriş yapmanız gerekiyor." });
 
     const tickets = await Ticket.find({ userId })
-      .populate("userId cheatId")
-      .sort({ createdAt: -1 });
+    .populate({
+        path: "userId",
+        select: "-password -IP_Address",
+    })
+    .populate("cheatId")
+    .sort({ createdAt: -1 });
+
+
 
     if (!tickets || tickets.length === 0)
       return res.status(404).json({ message: "Henüz ticketınız yok." });

@@ -188,7 +188,7 @@ const LibraryView = ({ libary }: { libary: LibraryEntry[] }) => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
       {libary.length ? libary.map((entry) => (
         <motion.div key={entry._id} className="bg-gray-900/70 backdrop-blur-md rounded-xl p-4 shadow-lg border border-purple-800/40 hover:border-purple-500 transition-all">
-          <img src={entry.cheat?.imageUrl || "https://via.placeholder.com/400x200"} className="w-full h-40 object-cover rounded-md mb-3" />
+          <img alt="Image" src={entry.cheat?.imageUrl || "https://via.placeholder.com/400x200"} className="w-full h-40 object-cover rounded-md mb-3" />
           <h3 className="text-lg font-semibold text-purple-300">{entry.cheat?.title}</h3>
           <p className="text-sm text-gray-300">{entry.cheat?.description || "Owned item"}</p>
           <div className="flex justify-between mt-4">

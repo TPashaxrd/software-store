@@ -1,4 +1,5 @@
-import { useEffect, useState, useRef, FormEvent } from "react";
+import { useEffect, useState, useRef } from "react";
+import type { FormEvent } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../components/Navbar";

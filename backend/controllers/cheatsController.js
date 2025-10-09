@@ -86,7 +86,9 @@ const assignCheatToUser = async (req, res) => {
 const getUserCheats = async (req, res) => {
   try {
     const { userId } = req.params;
-
+    if (req.session.userId !== userId) {
+      return res.status(403).json({ message: "Unauthorized access to user's cheats" });
+    }
     const user = await StoreUsers.findById(userId).populate("libary.product_id");
     if (!user) return res.status(404).json({ message: "User not found" });
 
