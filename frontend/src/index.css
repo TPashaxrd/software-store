@@ -14,6 +14,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Boldonse&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
+
 /* 
 ! font-family: Space Grotesk, serif;
 ! font-family: Roboto Condensed, serif;
@@ -98,21 +99,18 @@ body {
     animation: fadeIn 0.5s ease-in-out;
   }
 
-
-
-  
   .lds-facebook,
   .lds-facebook div {
     box-sizing: border-box;
   }
-  
+
   .lds-facebook {
     display: inline-block;
     position: relative;
     width: 64px;
     height: 64px;
   }
-  
+
   .lds-facebook div {
     display: inline-block;
     position: absolute;
@@ -123,22 +121,22 @@ body {
     border-radius: 2px;
     box-shadow: 0 0 8px rgba(107, 70, 193, 0.5); 
   }
-  
+
   .lds-facebook div:nth-child(1) {
     left: 6px;
     animation-delay: -0.2s;
   }
-  
+
   .lds-facebook div:nth-child(2) {
     left: 26px;
     animation-delay: -0.1s;
   }
-  
+
   .lds-facebook div:nth-child(3) {
     left: 46px; 
     animation-delay: 0s;
   }
-  
+
   @keyframes lds-facebook {
     0% {
       top: 6px;
@@ -175,9 +173,6 @@ body {
 .delay-100 { animation-delay: 0.1s; }
 .delay-200 { animation-delay: 0.2s; }
 .delay-300 { animation-delay: 0.3s; }
-
-
-
 
 @keyframes pulse-slow {
   0% { transform: scale(1); opacity: 0.2; }

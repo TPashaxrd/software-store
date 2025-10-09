@@ -1,4 +1,3 @@
-// components/Sidebar.tsx
 import { FaBox, FaBook, FaCog } from "react-icons/fa";
 
 export default function Sidebar() {

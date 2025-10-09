@@ -1,3 +1,4 @@
+const Cheats = require("../models/Cheats");
 const Users = require("../models/Users");
 const bcrypt = require("bcryptjs")
 
@@ -55,25 +56,39 @@ const Logout = async(req, res) => {
     })
 }
 
-const me = async(req, res) => {
-    try {
-        if(!req.session.userId) {
-            return res.status(401).json({ message: "Not logged in"})
-        }
-
-        const user = await Users.findById(req.session.userId).select("-password");
-        if(!user) {
-            req.session.destroy((err) => {
-                console.error("Session destroy error", err)
-            })
-        res.clearCookie("connect.sid")
-        return res.status(401).json({ message: "Session expired, please login again" });
-        }
-
-        res.json({ user })
-    } catch (error) {
-        
+const me = async (req, res) => {
+  try {
+    if (!req.session.userId) {
+      return res.status(401).json({ message: "Not logged in" });
     }
-}
+
+    const user = await Users.findById(req.session.userId).select("-password");
+    if (!user) {
+      req.session.destroy(() => {});
+      res.clearCookie("connect.sid");
+      return res.status(401).json({ message: "Session expired, please login again" });
+    }
+
+    const libaryWithCheats = await Promise.all(
+      user.libary.map(async (item) => {
+        const cheat = await Cheats.findOne({ cheatId: item.product_id }).select("-downloadLink");
+        return {
+          ...item.toObject(),
+          cheat: cheat || null,
+        };
+      })
+    );
+
+    res.status(200).json({
+      user: {
+        ...user.toObject(),
+        libary: libaryWithCheats,
+      },
+    });
+  } catch (error) {
+    console.error("❌ me() error:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
 
 module.exports = { CreateUser, Login, Logout, me  }

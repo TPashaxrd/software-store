@@ -6,6 +6,7 @@ const dotenv = require("dotenv")
 const MongoStore = require("connect-mongo")
 const session = require("express-session")
 const AuthRoutes = require("./routes/auth")
+const CheatRoutes = require("./routes/Cheats")
 const app = express()
 
 dotenv.config()
@@ -37,6 +38,7 @@ app.use(session({
 db()
 
 app.use("/api/auth", AuthRoutes)
+app.use("/api/cheats", CheatRoutes);
 
 const PORT = 5000;
 app.listen(PORT, () => {
