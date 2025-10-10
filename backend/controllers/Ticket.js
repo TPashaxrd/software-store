@@ -48,8 +48,6 @@ exports.getTicketsByUser = async (req, res) => {
     .populate("cheatId")
     .sort({ createdAt: -1 });
 
-
-
     if (!tickets || tickets.length === 0)
       return res.status(404).json({ message: "Henüz ticketınız yok." });
 
@@ -102,21 +100,5 @@ exports.addMessage = async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Mesaj eklenemedi." });
-  }
-};
-
-exports.closeTicket = async (req, res) => {
-  try {
-    if (!checkAdminAuth(req)) return res.status(403).json({ message: "Yetkisiz erişim." });
-
-    const ticket = await Ticket.findById(req.params.id);
-    if (!ticket) return res.status(404).json({ message: "Ticket bulunamadı." });
-
-    ticket.status = "closed";
-    await ticket.save();
-    res.status(200).json({ message: "Ticket kapatıldı.", ticket });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Ticket kapatılamadı." });
   }
 };

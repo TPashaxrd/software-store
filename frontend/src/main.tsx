@@ -8,6 +8,7 @@ import Packages from './Pages/Packages.tsx'
 import Product from './Pages/Product.tsx'
 import Ticket from './Pages/Ticket.tsx'
 import MyTickets from './Pages/Tickets.tsx'
+import Admin from './Pages/Admin/Admin.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
@@ -19,6 +20,10 @@ createRoot(document.getElementById('root')!).render(
     <Route path='/ticket' element={<MyTickets/>}/>
     <Route path="/ticket/:id" element={<Ticket/>}/>
     <Route path='/library/mine' element={<Library/>}/>
+
+    {/* ADMIN */}
+    <Route path='/admin' element={<Admin/>}/>
+
     <Route path='*' element={<NoPage/>}/>
    </Routes>
   </BrowserRouter>

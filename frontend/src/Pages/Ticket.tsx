@@ -36,6 +36,7 @@ export default function Ticket() {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<User | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const isClosed = ticket?.status === "closed";
 
   useEffect(() => {
     async function fetchUser() {
@@ -171,6 +172,7 @@ export default function Ticket() {
           <div ref={messagesEndRef} />
         </div>
 
+      {!isClosed && (
         <form onSubmit={handleSendMessage} className="flex gap-3 mt-4 w-full">
           <input
             type="text"
@@ -181,11 +183,16 @@ export default function Ticket() {
           />
           <button
             type="submit"
+            disabled={!newMessage.trim()}
             className="bg-gradient-to-r from-purple-500 to-purple-600 px-6 py-3 rounded-2xl font-semibold hover:from-purple-600 hover:to-purple-700 shadow transition-all"
           >
             Gönder
           </button>
         </form>
+      )}
+      {isClosed && (
+        <p className="text-red-500 mt-4 font-semibold">This ticket is closed. You cannot send new messages.</p>
+      )}
       </div>
     </div>
   );

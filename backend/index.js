@@ -9,6 +9,7 @@ const AuthRoutes = require("./routes/auth")
 const CheatRoutes = require("./routes/Cheats")
 const TicketRoutes = require("./routes/Tickets")
 const { limiter } = require("./middlewares/rateLimiter")
+const AdminRoutes = require("./routes/admin")
 const app = express()
 
 dotenv.config()
@@ -42,6 +43,7 @@ app.use(limiter)
 app.use("/api/auth", AuthRoutes)
 app.use("/api/cheats", CheatRoutes);
 app.use("/api/tickets", TicketRoutes)
+app.use("/api/admin", AdminRoutes)
 
 const PORT = 5000;
 app.listen(PORT, () => {

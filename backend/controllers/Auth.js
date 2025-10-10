@@ -69,6 +69,10 @@ const me = async (req, res) => {
       return res.status(401).json({ message: "Session expired, please login again" });
     }
 
+    if(user.isBanned) {
+      return res.status(403).json({ message: "Your account has been banned." });
+    }
+
     const libaryWithCheats = await Promise.all(
       user.libary.map(async (item) => {
         const cheat = await Cheats.findOne({ cheatId: item.product_id }).select("-downloadLink");

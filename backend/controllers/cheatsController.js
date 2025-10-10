@@ -49,40 +49,6 @@ const createCheat = async (req, res) => {
   }
 };
 
-const assignCheatToUser = async (req, res) => {
-  try {
-    const { userId } = req.params;
-    const { cheatId, key } = req.body;
-    
-    const cheat = await Cheats.findOne({ cheatId });
-    if (!cheat) return res.status(404).json({ message: "Cheat not found" });
-
-    const user = await StoreUsers.findById(userId);
-    if (!user) return res.status(404).json({ message: "User not found" });
-
-    const alreadyHas = user.libary.some(
-      (item) => item.product_id?.toString() === cheatId
-    );
-    if (alreadyHas)
-      return res.status(400).json({ message: "User already owns this cheat" });
-
-    user.libary.push({
-      product_id: cheatId,
-      key: key || "CONTACT WITH ADMIN's",
-    });
-
-    await user.save();
-
-    res.status(200).json({
-      message: `Cheat '${cheat.title}' assigned to ${user.username}`,
-      libary: user.libary,
-    });
-  } catch (err) {
-    console.error("❌ assignCheatToUser Error:", err);
-    res.status(500).json({ message: "Error assigning cheat" });
-  }
-};
-
 const getUserCheats = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -115,4 +81,4 @@ const getCheatsById = async (req, res) => {
   }
 };
 
-module.exports = { getUserCheats, createCheat, assignCheatToUser, getAllCheats, getCheatsById }
+module.exports = { getUserCheats, createCheat, getAllCheats, getCheatsById }
