@@ -123,7 +123,7 @@ router.post("/user/cheat/remove/:id", adminAuth, async(req, res) => {
 router.post("/user/cheat/add/:id", adminAuth, async (req, res) => {
   try {
     const userId = req.params.id; 
-    const { cheatId } = req.body;
+    const { cheatId, ticketId } = req.body;
 
     const cheat = await Cheats.findOne({ cheatId });
     if (!cheat) return res.status(404).json({ message: "Cheat not found" });
@@ -140,6 +140,12 @@ router.post("/user/cheat/add/:id", adminAuth, async (req, res) => {
     const randomKey = Math.random().toString(36).substring(2, 15) +
                       Math.random().toString(36).substring(2, 15);
     const newKey = `SHANZY-${randomKey.toUpperCase()}`;
+
+    const ticket = await Ticket.findById(ticketId);
+    if(ticket) {
+        ticket.order = "Successfully refunded by admin";
+        await ticket.save();
+    }
 
     user.libary.push({
       product_id: cheatId,

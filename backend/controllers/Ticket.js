@@ -10,9 +10,12 @@ exports.createTicket = async (req, res) => {
     const { userId, cheatId, firstMessage } = req.body;
     if (!userId || !cheatId) return res.status(400).json({ message: "userId ve cheatId gerekli." });
 
+    const randomID = Math.random().toString(7).substring(2, 10);
+
     const ticket = new Ticket({
       userId,
       cheatId,
+      checkoutId: `CHKOUT-${randomID}`,
       messages: firstMessage ? [{ sender: "user", text: firstMessage, createdAt: new Date() }] : [],
     });
 

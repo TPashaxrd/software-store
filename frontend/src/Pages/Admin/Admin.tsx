@@ -29,7 +29,7 @@ export default function Admin() {
       setAuthenticated(true);
       fetchAll(pw);
     } catch {
-      alert("❌ Hatalı şifre!");
+      alert("Wrong Password!");
     }
   };
 
@@ -60,22 +60,6 @@ export default function Admin() {
     setLoading(false);
   };
 
-  const banUser = async (id: string) => {
-    await axios.post(`http://localhost:5000/api/admin/user/ban/${id}`, { password });
-    fetchUsers(password);
-  };
-
-  const unbanUser = async (id: string) => {
-    await axios.post(`http://localhost:5000/api/admin/user/unban/${id}`, { password });
-    fetchUsers(password);
-  };
-
-  const deleteUser = async (id: string) => {
-    if (!confirm("Kullanıcıyı silmek istediğine emin misin?")) return;
-    await axios.post(`http://localhost:5000/api/admin/user/delete/${id}`, { password });
-    fetchUsers(password);
-  };
-
   const closeTicket = async (id: string) => {
     await axios.post(`http://localhost:5000/api/admin/ticket/close/${id}`, { password });
     fetchTickets(password);
@@ -103,7 +87,11 @@ export default function Admin() {
         ) : (
           <>
             {activeTab === "users" && (
-              <UsersTab users={users} banUser={banUser} unbanUser={unbanUser} deleteUser={deleteUser} />
+              <UsersTab
+                users={users}
+                fetchUsers={() => fetchUsers(password)}
+                adminPassword={password}
+              />
             )}
             {activeTab === "tickets" && (
               <TicketsTab tickets={tickets} closeTicket={closeTicket} reopenTicket={reopenTicket} />

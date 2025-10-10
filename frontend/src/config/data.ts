@@ -1,6 +1,7 @@
 export const data = {
     api: "http://localhost:5000",
     name: "Shanzy",
-    paparaNo: "1234567890",
-    IBAN: "TR00 0000 0000 0000 0000 0000 00",
+    Info: "Mustafa Yağız Bayram",
+    paparaNo: "1955711745",
+    IBAN: "TR96 0082 9000 0949 1955 7117 45",
 }

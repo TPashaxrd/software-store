@@ -27,6 +27,14 @@ const TicketSchema = new mongoose.Schema({
     ref: "Cheats",
     required: true
   },
+  order: {
+    type: String,
+    default: "N/A"
+  },
+  checkoutId: {
+    type: String,
+    default: "NONE"
+  },
   status: {
     type: String,
     enum: ["open", "pending", "closed"],

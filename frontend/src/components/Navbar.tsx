@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FaUserCircle, FaSignOutAlt, FaSignInAlt, FaUserPlus, FaBars, FaTimes } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { HelpCircle, Book, Package } from "lucide-react";
+import { data } from "../config/data";
 
 interface Props {
   user: any;
@@ -27,7 +28,7 @@ export default function CreativeNavbar({ user, onLogout }: Props) {
       className="w-full fixed top-0 z-50 backdrop-blur-xl bg-gray-900/60 border-b border-gray-700 rounded-b-2xl px-6 md:px-12 py-4 flex items-center justify-between shadow-lg"
     >
       <a href="/" className="text-2xl md:text-3xl font-extrabold text-red-500 hover:text-pink-500 transition-colors">
-        ShartyCheat
+        {data.name}
       </a>
 
       <div className="hidden md:flex items-center gap-8">

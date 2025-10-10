@@ -23,6 +23,7 @@ createRoot(document.getElementById('root')!).render(
 
     {/* ADMIN */}
     <Route path='/admin' element={<Admin/>}/>
+    <Route path='/admin/*' element={<Admin/>}/>
 
     <Route path='*' element={<NoPage/>}/>
    </Routes>
