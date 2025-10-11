@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { FaBan, FaCheck, FaTrash, FaPlus, FaMinus } from "react-icons/fa";
+import { FaBan, FaCheck, FaPlus, FaMinus } from "react-icons/fa";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { data } from "../../config/data";

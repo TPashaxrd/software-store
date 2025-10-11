@@ -5,8 +5,6 @@ import { FaUserCircle, FaLock, FaSignInAlt, FaExclamationCircle, FaUserPlus, FaR
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./Navbar";
-import type { Variants } from "motion/react";
-import type { motionS, useAnimation } from "motion/react";
 import { User } from "./others/User";
 
 interface User {

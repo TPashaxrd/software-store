@@ -132,7 +132,7 @@ export default function Library() {
   );
 }
 
-const Sidebar = ({ user, view, setView, handleLogout, sidebarOpen, setSidebarOpen }: any) => (
+const Sidebar = ({ user, view, setView, handleLogout, sidebarOpen }: any) => (
   <motion.aside
     initial={{ x: -300 }}
     animate={{ x: sidebarOpen || window.innerWidth >= 768 ? 0 : -300 }}
