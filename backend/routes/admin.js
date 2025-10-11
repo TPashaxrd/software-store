@@ -186,6 +186,29 @@ router.post("/cheats", adminAuth, async (req, res) => {
     }
 })
 
+router.post("/cheat/update/:id", adminAuth, async (req, res) => {
+  try {
+    const { title, game, description, price, cheatId, status, downloadLink } = req.body;
+
+    const cheat = await Cheats.findOne({ cheatId: req.params.id });
+    if (!cheat) return res.status(404).json({ message: "Cheat bulunamadı." });
+
+    if (title) cheat.title = title;
+    if (game) cheat.game = game;
+    if (description) cheat.description = description;
+    if (price) cheat.price = price;
+    if (cheatId) cheat.cheatId = cheatId;
+    if (status) cheat.status = status;
+    if (downloadLink) cheat.downloadLink = downloadLink;
+
+    await cheat.save();
+
+    res.status(200).json({ message: "Cheat successfully updated.", cheat });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 router.post("/ticket/msg/:id", async (req, res) => {
   try {
     const ticket = await Ticket.findById(req.params.id)
@@ -219,6 +242,29 @@ router.post("/ticket/msg/:id", async (req, res) => {
     res.status(500).json({ message: "Sunucu hatası." });
   }
 });
+
+router.post("/dashboard/stats", adminAuth, async(req, res) => {
+  try {
+    const userCount = await Users.countDocuments();
+    const cheatCount = await Cheats.countDocuments();
+    const ticketCount = await Ticket.countDocuments()
+
+    const openTickets = await Ticket.countDocuments({ status: "open" });
+    const closedTickets = await Ticket.countDocuments({ status: "closed" });
+
+    const data = {
+      userCount,
+      cheatCount,
+      ticketCount,
+      openTickets,
+      closedTickets
+    }
+
+    res.status(201).json(data)
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+})
 
 module.exports = router
 

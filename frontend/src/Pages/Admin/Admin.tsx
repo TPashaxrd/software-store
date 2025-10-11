@@ -5,11 +5,13 @@ import SidebarButton from "./SidebarButton";
 import UsersTab from "./UsersTab";
 import TicketsTab from "./TicketsTab";
 import CheatsTab from "./CheatsTab";
+import { SatelliteDish } from "lucide-react";
+import Dashboard from "./Dashboard";
 
 export default function Admin() {
   const [password, setPassword] = useState("");
   const [authenticated, setAuthenticated] = useState(false);
-  const [activeTab, setActiveTab] = useState<"users" | "tickets" | "cheats">("users");
+  const [activeTab, setActiveTab] = useState<"users" | "tickets" | "cheats" | "stats">("users");
   const [users, setUsers] = useState<any[]>([]);
   const [tickets, setTickets] = useState<any[]>([]);
   const [cheats, setCheats] = useState<any[]>([]);
@@ -79,6 +81,7 @@ export default function Admin() {
         <SidebarButton label="Users" icon={<FaUser />} active={activeTab === "users"} onClick={() => setActiveTab("users")} />
         <SidebarButton label="Tickets" icon={<FaTicketAlt />} active={activeTab === "tickets"} onClick={() => setActiveTab("tickets")} />
         <SidebarButton label="Cheats" icon={<FaGamepad />} active={activeTab === "cheats"} onClick={() => setActiveTab("cheats")} />
+        <SidebarButton label="Stats" icon={<SatelliteDish/>} active={activeTab === "stats"} onClick={() => setActiveTab("stats")} />
       </div>
 
       <div className="flex-1 p-6 overflow-y-auto">
@@ -97,6 +100,9 @@ export default function Admin() {
               <TicketsTab tickets={tickets} closeTicket={closeTicket} reopenTicket={reopenTicket} />
             )}
             {activeTab === "cheats" && <CheatsTab cheats={cheats} />}
+            {activeTab === "stats" && (
+              <Dashboard />
+            )}
           </>
         )}
       </div>

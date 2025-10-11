@@ -4,6 +4,7 @@ import { FaBan, FaCheck, FaTrash, FaPlus, FaMinus } from "react-icons/fa";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { data } from "../../config/data";
+import { User } from "lucide-react";
 
 interface LibraryItem {
   product_id: string;
@@ -35,7 +36,7 @@ export default function UsersTab({
   const banUser = async (id: string) => {
     try {
       await axios.post(`${data.api}/api/admin/user/ban/${id}`, { password: adminPassword });
-      toast.success("Kullanıcı banlandı ✅");
+      toast.success("Kullanıcı banlandı.");
       fetchUsers();
     } catch (err: any) {
       toast.error(err.response?.data?.message || "Hata oluştu");
@@ -45,7 +46,7 @@ export default function UsersTab({
   const unbanUser = async (id: string) => {
     try {
       await axios.post(`${data.api}/api/admin/user/unban/${id}`, { password: adminPassword });
-      toast.success("Ban kaldırıldı ✅");
+      toast.success("Ban kaldırıldı.");
       fetchUsers();
     } catch (err: any) {
       toast.error(err.response?.data?.message || "Hata oluştu");
@@ -56,7 +57,7 @@ export default function UsersTab({
     if (!confirm("Kullanıcıyı silmek istediğine emin misin?")) return;
     try {
       await axios.post(`${data.api}/api/admin/user/delete/${id}`, { password: adminPassword });
-      toast.success("Kullanıcı silindi ✅");
+      toast.success("Kullanıcı silindi.");
       fetchUsers();
     } catch (err: any) {
       toast.error(err.response?.data?.message || "Hata oluştu");
@@ -70,7 +71,7 @@ export default function UsersTab({
         `${data.api}/api/admin/user/cheat/add/${selectedUser._id}`,
         { cheatId, password: adminPassword }
       );
-      toast.success("Cheat eklendi ✅");
+      toast.success("Cheat eklendi.");
       setCheatId("");
       fetchUsers();
     } catch (err: any) {
@@ -85,7 +86,7 @@ export default function UsersTab({
         `${data.api}/api/admin/user/cheat/remove/${selectedUser._id}`,
         { cheatId, password: adminPassword }
       );
-      toast.success("Cheat silindi ✅");
+      toast.success("Cheat silindi.");
       fetchUsers();
     } catch (err: any) {
       toast.error(err.response?.data?.message || "Hile silinemedi");
@@ -94,7 +95,7 @@ export default function UsersTab({
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-4 text-white">
-      <h2 className="text-2xl font-bold mb-6 text-purple-400">👥 Users Dashboard</h2>
+      <h2 className="text-2xl font-bold mb-6 text-purple-400 flex gap-1"><User className="mt-1" /> Users Dashboard</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {users.map((u) => (
