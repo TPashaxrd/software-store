@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { data } from "../../config/data";
+import { CheckIcon } from "lucide-react";
 
 interface Ticket {
   _id: string;
@@ -174,10 +175,9 @@ export default function TicketsTab({
                 }
                 className="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl px-6 py-3 mb-4 shadow-md transition"
             >
-                Siparişi Tamamla ✅
+                <CheckIcon />Siparişi Tamamla
             </button>
 
-            {/* Messages */}
             <div className="flex-1 overflow-y-auto bg-[#111] p-4 rounded-2xl space-y-3 mb-4 max-h-[50vh] scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-gray-700">
                 {selectedTicket.messages.map((msg, idx) => (
                 <div

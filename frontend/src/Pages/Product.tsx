@@ -180,7 +180,7 @@ export default function Product() {
               </p>
             </div>
 
-            <span className="text-3xl font-semibold text-green-400 mt-4">${item.price.toFixed(2)}</span>
+            <span className="text-3xl font-semibold text-green-400 mt-4">{item.price.toFixed(2)}</span>
 
             <div className="mt-6 p-5 bg-gray-800/60 rounded-xl border border-purple-600/50 shadow-md">
               <h2 className="text-xl font-bold text-purple-400 mb-2">How to Use</h2>

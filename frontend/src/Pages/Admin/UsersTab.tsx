@@ -5,6 +5,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { data } from "../../config/data";
 import { User } from "lucide-react";
+import { Delete } from "../../components/others/DeleteIcon";
 
 interface LibraryItem {
   product_id: string;
@@ -127,10 +128,10 @@ export default function UsersTab({
                 </button>
               )}
               <button
-                onClick={(e) => { e.stopPropagation(); deleteUser(u._id); }}
-                className="flex items-center gap-1 bg-gray-700 px-3 py-1 rounded-full text-sm hover:bg-gray-600 transition"
+                onClick={(e) => { e.stopPropagation(); deleteUser(u._id); }} title="Delete User"
+                className="flex items-center gap-1 bg-gray-700/70 px-3 py-1 font-inter rounded-full text-sm hover:bg-gray-600 transition"
               >
-                <FaTrash /> Delete
+                <Delete />
               </button>
             </div>
           </motion.div>
